@@ -1,4 +1,4 @@
-# Web-Programming-Final-Project
+﻿# Web-Programming-Final-Project
 
 ## სასმელების ვებ აპლიკაცია
 
@@ -22,7 +22,7 @@
 * ბოლოს დამატებული სასმელების ჩარჩო
 
 ### გამოყენებული api:
-*ლინკი*: https://www.thecocktaildb.com/api.php
+ლინკი: https://www.thecocktaildb.com/api.php
 
 
 
