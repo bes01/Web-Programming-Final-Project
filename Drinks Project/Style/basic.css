@@ -1,3 +1,167 @@
- body {
- 	background-color: blue;
- }
+.mainDiv {
+	width: 60%;
+	height: 100%;
+	margin: 0 auto;
+}
+
+body{
+	background-color: #D2B48C;
+}
+
+.header{
+	position: relative;
+	height: 150px;
+	background-color: #DAA520;
+	margin-bottom: 1%;
+	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.logo{
+	height: 100%;
+	width: 20%;
+	justify-content: center;
+	display: flex;
+	align-items: center;
+}
+
+.logoImg{
+	border-radius: 50%;
+	max-width: 90%;
+	max-height: 90%;
+}
+
+.heading{
+	width: 50%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.heading h1{
+	margin: 0 auto;
+}
+
+.search{
+	height: 100%;
+	width: 30%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+}
+
+/* .search button{
+	 
+}
+
+.search button:hover{
+	
+} */
+
+.filterBar{
+	height: 70;
+	background-color: #DAA520;
+	border-radius: 10px;
+	margin-bottom: 1%;
+}
+
+.filterBar ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
+.filterBar ul li{
+	border: solid white;
+}
+
+.filterBar ul .filter{
+	float: left;
+	margin-left: 3%;
+	margin-right: 3%;
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	border-radius: 10px;
+}
+
+.filterBar ul .button {
+	--c: rgb(0, 0, 0);
+	color: var(--c);
+	border-radius: 10px;
+	text-align: center;
+	position: relative;
+	overflow: hidden;
+	z-index: 1;
+	transition: 0.5s;
+	margin: 1em;
+}
+
+.filterBar ul .button span {
+	position: absolute;
+	width: 25%;
+	height: 100%;
+	background-color: var(--c);
+	transform: translateY(150%);
+	border-radius: 50%;
+	left: calc((var(--n) - 1) * 25%);
+	transition: 0.5s;
+	transition-delay: calc((var(--n) - 1) * 0.1s);
+	z-index: -1;
+}
+
+.filterBar ul .button:hover {
+	cursor: pointer;
+}
+
+.filterBar ul .button:hover span {
+	transform: translateY(0) scale(2);
+}
+
+.filterBar ul .button span:nth-child(1) {
+	--n: 1;
+}
+
+.filterBar ul .button span:nth-child(2) {
+	--n: 2;
+}
+
+.filterBar ul .button span:nth-child(3) {
+	--n: 3;
+}
+
+.filterBar ul .button span:nth-child(4) {
+	--n: 4;
+}
+
+.filterBar ul .button{
+	margin: 0 auto;
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	border-radius: 10px;
+}
+
+.filterBar ul .filter:hover {
+	background-color: #111;
+	cursor: pointer;
+}
+
+.content{
+	height: 70%;
+	background-color: #DAA520;
+	border-radius: 10px;
+}
