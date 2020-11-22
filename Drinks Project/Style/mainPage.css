@@ -1,12 +1,17 @@
 .mainDiv {
-	width: 60%;
+	width: 70%;
 	height: 100%;
 	margin: 0 auto;
 }
 
 body{
 	background-color: #D2B48C;
+	font-family: cursive;
 }
+
+/*
+	HEADER
+*/
 
 .header{
 	position: relative;
@@ -54,13 +59,44 @@ body{
 	align-items: center;
 }
 
-/* .search button{
-	 
+#searchDrink{
+	max-width: 90%;
+	display: block;
+	height: 19%;
+	padding: .47rem .75rem;
+	font-size: .8125rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #495057;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid #ced4da;
+	border-radius: .25rem;
+	transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
-.search button:hover{
-	
-} */
+#searchButton {
+	border-color: black;
+	color: black;
+	background-color: whitesmoke;
+	width: 60;
+	height: 25;
+	max-width: 50%;
+	max-height: 50%;
+	border-width: 1px;
+	border-radius: 5px;
+}
+
+#searchButton:hover {
+	cursor: pointer;
+	background-color: black;
+	color: whitesmoke;
+	border-color: whitesmoke;
+}
+
+/*
+	Filter Menu
+*/
 
 .filterBar{
 	height: 70;
@@ -160,8 +196,55 @@ body{
 	cursor: pointer;
 }
 
+/*
+	Filter Options
+*/
+
+.filterOptions{
+	background-color: #DAA520;
+	height: 50px;
+	width: 100%;
+	border-radius: 10px;
+	margin-bottom: 1%;
+}
+
+
+/*
+	Content
+*/
+
 .content{
-	height: 70%;
 	background-color: #DAA520;
 	border-radius: 10px;
+	margin-bottom: 1%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 }
+
+.childContent{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+/*
+	Footer
+*/
+
+.Footer{
+	background-color: #DAA520;
+	border-radius: 10px;
+	padding: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.Footer h4{
+	display: inline-block;
+	margin: 0 auto;
+}
+

@@ -1,13 +1,15 @@
 <html>
 	<head>
 		<title>Drinks Web App</title>
-		<link rel="stylesheet" href="../Style/basic.css">
+		<link rel="stylesheet" href="../Style/mainPage.css">
+		<link rel="stylesheet" href="../Style/drinkCard.css">
+		<script src="../Javascript/tempJs.js"></script>
 	</head>
 	<body>
 		<div class="mainDiv">
 			<div class="header">
 				<div class="logo">
-					<img class="logoImg" src="logo.jpg">	
+					<img class="logoImg" src="../Resources/logo.jpg">	
 				</div>	
 				<div class="heading">
 					<h1>Welcome To Cocktail's WebSite</h1>
@@ -15,41 +17,142 @@
 				<div class="search">
 					<h4 style="margin: 0;">Find Your Drink</h4>
 					<input type="text" id ="searchDrink"> 
-					<button>Search</button>
+					<button id="searchButton">Search</button>
 				</div>
 			</div>
 			<div class="filterBar">
 				<ul>
-					<li class="filter">
-						<a>
-							Category
-						</a>
-					</li>
-					<li class="filter">
-						<a>
-							Glass
-						</a>
-					</li>
-					<li class="filter">
-						<a>
-							Ingredient
-						</a>
-					</li>
-					<li class="filter">
-						<a>
-							Alcoholic
-						</a>
-					</li>
+					<li class="filter">Category</li>
+					<li class="filter">Glass</li>
+					<li class="filter">Ingredient</li>
+					<li class="filter">Alcoholic</li>
 					<li class="button">
 						Filter
       				<span></span><span></span><span></span><span></span>
 					</li>
 				</ul>
 			</div>
+			<div class="filterOptions" style="display: none;"></div>
 			<div class="content">
+				<h3>Random Drinks</h3>
+				<div class="childContent" id="randomDrinks">
+					<div class="drinkCard">
+						<img src="../Resources/sample.jpg">
+						<h3 class="cardTitle">Negroni</h3>
+						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
+					</div>
+					<div class="drinkCard">
+						<img src="../Resources/sample.jpg">
+						<h3 class="cardTitle">Negroni</h3>
+						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
+					</div>
+					<div class="drinkCard">
+						<img src="../Resources/sample.jpg">
+						<h3 class="cardTitle">Negroni</h3>
+						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
+					</div>
+					<div class="drinkCard">
+						<img src="../Resources/sample.jpg">
+						<h3 class="cardTitle">Negroni</h3>
+						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
+					</div>
+					<div class="drinkCard">
+						<img src="../Resources/sample.jpg">
+						<h3 class="cardTitle">Negroni</h3>
+						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
+					</div>
+				</div>
+				<h3>Popular Drinks</h3>
+				<div class="childContent" id="popularDrinks">
+					<div class="drinkCard">
+						<img src="../Resources/sample.jpg">
+						<h3 class="cardTitle">Negroni</h3>
+						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
+					</div>
+					<div class="drinkCard">
+						<img src="../Resources/sample.jpg">
+						<h3 class="cardTitle">Negroni</h3>
+						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
+					</div>
+					<div class="drinkCard">
+						<img src="../Resources/sample.jpg">
+						<h3 class="cardTitle">Negroni</h3>
+						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
+					</div>
+					<div class="drinkCard">
+						<img src="../Resources/sample.jpg">
+						<h3 class="cardTitle">Negroni</h3>
+						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
+					</div>
+					<div class="drinkCard">
+						<img src="../Resources/sample.jpg">
+						<h3 class="cardTitle">Negroni</h3>
+						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
+					</div>
+				</div>
+				<h3>Latest Drinks</h3>
+				<div class="childContent" id="latestDrinks">
+					<div class="drinkCard">
+						<img src="../Resources/sample.jpg">
+						<h3 class="cardTitle">Negroni</h3>
+						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
+					</div>
+					<div class="drinkCard">
+						<img src="../Resources/sample.jpg">
+						<h3 class="cardTitle">Negroni</h3>
+						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
+					</div>
+					<div class="drinkCard">
+						<img src="../Resources/sample.jpg">
+						<h3 class="cardTitle">Negroni</h3>
+						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
+					</div>
+					<div class="drinkCard">
+						<img src="../Resources/sample.jpg">
+						<h3 class="cardTitle">Negroni</h3>
+						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
+					</div>
+					<div class="drinkCard">
+						<img src="../Resources/sample.jpg">
+						<h3 class="cardTitle">Negroni</h3>
+						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
+					</div>
+				</div>
+				<h3>Popular Ingredients</h3>
+				<div class="childContent" id="popularIngredients">
+					<div class="drinkCard">
+						<img src="../Resources/sample.jpg">
+						<h3 class="cardTitle">Negroni</h3>
+						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
+					</div>
+					<div class="drinkCard">
+						<img src="../Resources/sample.jpg">
+						<h3 class="cardTitle">Negroni</h3>
+						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
+					</div>
+					<div class="drinkCard">
+						<img src="../Resources/sample.jpg">
+						<h3 class="cardTitle">Negroni</h3>
+						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
+					</div>
+					<div class="drinkCard">
+						<img src="../Resources/sample.jpg">
+						<h3 class="cardTitle">Negroni</h3>
+						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
+					</div>
+					<div class="drinkCard">
+						<img src="../Resources/sample.jpg">
+						<h3 class="cardTitle">Negroni</h3>
+						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
+					</div>
+				</div>
+			</div>
+			<div class="Footer">
+				<h4>©2020 Cocktail's Website. All Rights Reserved.</h6>
+			</div>
+			<div style="height: 2%;">
 
 			</div>
 		</div>
 	</body>
-
 </html>
