@@ -3,7 +3,9 @@
 		<title>Drinks Web App</title>
 		<link rel="stylesheet" href="../Style/mainPage.css">
 		<link rel="stylesheet" href="../Style/drinkCard.css">
-		<script src="../Javascript/tempJs.js"></script>
+		<link rel="stylesheet" href="../Style/contactPage.css">
+
+		<script src="../Javascript/navigation.js"></script>
 	</head>
 	<body>
 		<div class="mainDiv">
@@ -16,24 +18,35 @@
 				</div>
 				<div class="search">
 					<h4 style="margin: 0;">Find Your Drink</h4>
-					<input type="text" id ="searchDrink"> 
+					<input type="text" id ="searchDrink" placeholder="Search for a Cocktail..."> 
 					<button id="searchButton">Search</button>
 				</div>
 			</div>
-			<div class="filterBar">
+
+			<!-- /
+				Menu-Start
+			 -->
+			<div id ="menu" class="menu">
 				<ul>
-					<li class="filter">Category</li>
-					<li class="filter">Glass</li>
-					<li class="filter">Ingredient</li>
-					<li class="filter">Alcoholic</li>
-					<li class="button">
-						Filter
-      				<span></span><span></span><span></span><span></span>
-					</li>
+					<li class="item active">Home</li>
+					<li class="item">Search</li>
+					<li class="item">Place Order</li>
+					<li class="item">About Us</li>
+					<li class="item">Contact</li>
 				</ul>
 			</div>
-			<div class="filterOptions" style="display: none;"></div>
-			<div class="content">
+			<script>
+				let menuItems = document.getElementById('menu').children[0].children;
+				for(let i = 0; i < menuItems.length; i++){
+					let page = menuItems[i].innerHTML;
+					menuItems[i].addEventListener('click', ()=>{goToPage(page)})
+				}
+			</script>
+			<!-- /
+				Menu-End
+			 -->
+
+			<div id="content" class="content">
 				<h3>Random Drinks</h3>
 				<div class="childContent" id="randomDrinks">
 					<div class="drinkCard">
@@ -148,11 +161,14 @@
 				</div>
 			</div>
 			<div class="Footer">
-				<h4>©2020 Cocktail's Website. All Rights Reserved.</h6>
+				<h4>©2020 Cocktail's Website. All Rights Reserved.</h4>
+				<div class="socialMedia">
+					<img class="" src="../Resources/Footer/facebook.png">
+					<img class="" src="../Resources/Footer/instagram.png">
+					<img class="" src="../Resources/Footer/twitter.png">
+				</div>
 			</div>
-			<div style="height: 2%;">
-
-			</div>
+			<div style="height: 2%;"></div>
 		</div>
 	</body>
 </html>
