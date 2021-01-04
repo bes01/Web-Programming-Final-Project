@@ -117,7 +117,7 @@ const searchPage = `<h3>searchPage</h3>`;
 
 const placeOrderPage = `<h3>placeOrderPage</h3>`;
 
-const aboutUsPage = `<h3>aboutUsPage</h3>`;
+const aboutUsPage = `<h3>About</h3>`;
 
 const contactPage = `
 <div class="contact">
@@ -170,9 +170,9 @@ let prepareContact = () =>{
 };
 
 let pages = {
-    Home: {html:homePage},
-    Search: {html:searchPage},
-    PlaceOrder: {html:placeOrderPage},
-    AboutUs: {html:aboutUsPage},
+    Home: {html:homePage, prepare: () =>{}},
+    Search: {html:searchPage, prepare: () =>{}},
+    PlaceOrder: {html:placeOrderPage, prepare: () =>{}},
+    AboutUs: {html:aboutUsPage, prepare: () =>{}},
     Contact: {html:contactPage, prepare: () =>{prepareContact()}}
 };

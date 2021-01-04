@@ -1,6 +1,6 @@
 let goToPage = (page) =>{
-    page = page.split(' ').join('');
-    let content = pages[page].html;
+    pageKey = page.split(' ').join('');
+    let content = pages[pageKey].html;
     let contentDiv = document.getElementById('content');
     contentDiv.innerHTML = content;
     let menuItems = document.getElementById('menu').children[0].children;
@@ -9,7 +9,7 @@ let goToPage = (page) =>{
         if(menuItems[i].innerHTML == page)
             menuItems[i].className += " active";
     }
-    pages[page].prepare();
+    pages[pageKey].prepare();
 };
 
 let prepareNavigation = () =>{

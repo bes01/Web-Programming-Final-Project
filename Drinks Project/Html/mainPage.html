@@ -7,6 +7,7 @@
 		<script src="../Javascript/pageConstants.js"></script>
 		<script src="../Javascript/popUpMessage.js"></script>
 		<script src="../Javascript/navigation.js"></script>
+		<script src="../Javascript/footer.js"></script>
 	</head>
 	<body class="body">
 		<!-- /
@@ -54,126 +55,17 @@
 				Content-Start
 			 -->
 			<div id="content" class="content">
-				<h3>Random Drinks</h3>
-				<div class="childContent" id="randomDrinks">
-					<div class="drinkCard">
-						<img src="../Resources/sample.jpg">
-						<h3 class="cardTitle">Negroni</h3>
-						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
-					</div>
-					<div class="drinkCard">
-						<img src="../Resources/sample.jpg">
-						<h3 class="cardTitle">Negroni</h3>
-						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
-					</div>
-					<div class="drinkCard">
-						<img src="../Resources/sample.jpg">
-						<h3 class="cardTitle">Negroni</h3>
-						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
-					</div>
-					<div class="drinkCard">
-						<img src="../Resources/sample.jpg">
-						<h3 class="cardTitle">Negroni</h3>
-						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
-					</div>
-					<div class="drinkCard">
-						<img src="../Resources/sample.jpg">
-						<h3 class="cardTitle">Negroni</h3>
-						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
-					</div>
-				</div>
-				<h3>Popular Drinks</h3>
-				<div class="childContent" id="popularDrinks">
-					<div class="drinkCard">
-						<img src="../Resources/sample.jpg">
-						<h3 class="cardTitle">Negroni</h3>
-						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
-					</div>
-					<div class="drinkCard">
-						<img src="../Resources/sample.jpg">
-						<h3 class="cardTitle">Negroni</h3>
-						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
-					</div>
-					<div class="drinkCard">
-						<img src="../Resources/sample.jpg">
-						<h3 class="cardTitle">Negroni</h3>
-						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
-					</div>
-					<div class="drinkCard">
-						<img src="../Resources/sample.jpg">
-						<h3 class="cardTitle">Negroni</h3>
-						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
-					</div>
-					<div class="drinkCard">
-						<img src="../Resources/sample.jpg">
-						<h3 class="cardTitle">Negroni</h3>
-						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
-					</div>
-				</div>
-				<h3>Latest Drinks</h3>
-				<div class="childContent" id="latestDrinks">
-					<div class="drinkCard">
-						<img src="../Resources/sample.jpg">
-						<h3 class="cardTitle">Negroni</h3>
-						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
-					</div>
-					<div class="drinkCard">
-						<img src="../Resources/sample.jpg">
-						<h3 class="cardTitle">Negroni</h3>
-						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
-					</div>
-					<div class="drinkCard">
-						<img src="../Resources/sample.jpg">
-						<h3 class="cardTitle">Negroni</h3>
-						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
-					</div>
-					<div class="drinkCard">
-						<img src="../Resources/sample.jpg">
-						<h3 class="cardTitle">Negroni</h3>
-						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
-					</div>
-					<div class="drinkCard">
-						<img src="../Resources/sample.jpg">
-						<h3 class="cardTitle">Negroni</h3>
-						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
-					</div>
-				</div>
-				<h3>Popular Ingredients</h3>
-				<div class="childContent" id="popularIngredients">
-					<div class="drinkCard">
-						<img src="../Resources/sample.jpg">
-						<h3 class="cardTitle">Negroni</h3>
-						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
-					</div>
-					<div class="drinkCard">
-						<img src="../Resources/sample.jpg">
-						<h3 class="cardTitle">Negroni</h3>
-						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
-					</div>
-					<div class="drinkCard">
-						<img src="../Resources/sample.jpg">
-						<h3 class="cardTitle">Negroni</h3>
-						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
-					</div>
-					<div class="drinkCard">
-						<img src="../Resources/sample.jpg">
-						<h3 class="cardTitle">Negroni</h3>
-						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
-					</div>
-					<div class="drinkCard">
-						<img src="../Resources/sample.jpg">
-						<h3 class="cardTitle">Negroni</h3>
-						<p class="cardText">Stir into glass over ice, garnish and serve.</p>
-					</div>
-				</div>
+				<h3>About</h3>
 			</div>
+			<script>goToPage('About Us')</script>
 			<div class="Footer">
 				<h4>©2020 Cocktail's Website. All Rights Reserved.</h4>
 				<div class="socialMedia">
-					<img class="" src="../Resources/Footer/facebook.png">
-					<img class="" src="../Resources/Footer/instagram.png">
-					<img class="" src="../Resources/Footer/twitter.png">
+					<img id="facebook" src="../Resources/Footer/facebook.png">
+					<img id="instagram" src="../Resources/Footer/instagram.png">
+					<img id="twitter" src="../Resources/Footer/twitter.png">
 				</div>
+				<script>prepareFooter()</script>
 			</div>
 			<div style="height: 2%;"></div>
 		</div>
