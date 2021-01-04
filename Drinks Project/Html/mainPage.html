@@ -4,10 +4,25 @@
 		<link rel="stylesheet" href="../Style/mainPage.css">
 		<link rel="stylesheet" href="../Style/drinkCard.css">
 		<link rel="stylesheet" href="../Style/contactPage.css">
-
+		<script src="../Javascript/pageConstants.js"></script>
+		<script src="../Javascript/popUpMessage.js"></script>
 		<script src="../Javascript/navigation.js"></script>
 	</head>
-	<body>
+	<body class="body">
+		<!-- /
+				Message-Start
+			 -->
+		<div id="overLay" class="overLay" style="display: none;"></div>
+		<div id="box" class="box" style="display: none;">
+			<div class="wrappBox">
+				<h3 id="message"></h3>
+				<div id= 'closeMessage' class="closeMessage" style="display: inline-block;"><h4 style="margin: 0;">Close Message</h4></div>
+			</div>
+		</div>
+		<script>prepareMessage()</script>
+		<!-- /
+				Header-Start
+			 -->
 		<div class="mainDiv">
 			<div class="header">
 				<div class="logo">
@@ -22,7 +37,6 @@
 					<button id="searchButton">Search</button>
 				</div>
 			</div>
-
 			<!-- /
 				Menu-Start
 			 -->
@@ -35,17 +49,10 @@
 					<li class="item">Contact</li>
 				</ul>
 			</div>
-			<script>
-				let menuItems = document.getElementById('menu').children[0].children;
-				for(let i = 0; i < menuItems.length; i++){
-					let page = menuItems[i].innerHTML;
-					menuItems[i].addEventListener('click', ()=>{goToPage(page)})
-				}
-			</script>
+			<script>prepareNavigation();</script>
 			<!-- /
-				Menu-End
+				Content-Start
 			 -->
-
 			<div id="content" class="content">
 				<h3>Random Drinks</h3>
 				<div class="childContent" id="randomDrinks">
