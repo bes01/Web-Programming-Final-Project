@@ -4,6 +4,9 @@
 		<link rel="stylesheet" href="../Style/mainPage.css">
 		<link rel="stylesheet" href="../Style/drinkCard.css">
 		<link rel="stylesheet" href="../Style/contactPage.css">
+		<link rel="stylesheet" href="../Style/aboutUsPage.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
 		<script src="../Javascript/pageConstants.js"></script>
 		<script src="../Javascript/popUpMessage.js"></script>
 		<script src="../Javascript/navigation.js"></script>
@@ -25,7 +28,7 @@
 				Header-Start
 			 -->
 		<div class="mainDiv">
-			<div class="header">
+			<div class="header animate__animated animate__lightSpeedInRight">
 				<div class="logo">
 					<img class="logoImg" src="../Resources/logo.jpg">	
 				</div>	
@@ -41,13 +44,13 @@
 			<!-- /
 				Menu-Start
 			 -->
-			<div id ="menu" class="menu">
+			<div id ="menu" class="menu animate__animated animate__lightSpeedInLeft">
 				<ul>
 					<li class="item active">Home</li>
 					<li class="item">Search</li>
-					<li class="item">Place Order</li>
 					<li class="item">About Us</li>
 					<li class="item">Contact</li>
+					<li class="item">Credits</li>
 				</ul>
 			</div>
 			<script>prepareNavigation();</script>
@@ -55,10 +58,13 @@
 				Content-Start
 			 -->
 			<div id="content" class="content">
-				<h3>About</h3>
+				
 			</div>
-			<script>goToPage('About Us')</script>
-			<div class="Footer">
+			<script>goToPage('Contact', 'animate__zoomIn')</script>
+			<!-- /
+				Footer-Start
+			 -->
+			<div class="Footer animate__animated animate__bounceInUp">
 				<h4>©2020 Cocktail's Website. All Rights Reserved.</h4>
 				<div class="socialMedia">
 					<img id="facebook" src="../Resources/Footer/facebook.png">

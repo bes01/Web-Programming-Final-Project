@@ -1,0 +1,15 @@
+.row{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2%;
+}
+
+.row img{
+    margin: 0% 2%;
+    border-radius: 25px;
+    border: solid black;
+}
+
+.row p{
+    margin: 0% 2%;
+}
