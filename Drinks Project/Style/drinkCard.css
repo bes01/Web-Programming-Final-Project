@@ -19,11 +19,12 @@
     max-width: 100%;
     max-height: 100%;
     border-bottom: solid black;
+    background-color: lightslategrey;
 }
 
 .cardTitle{
     padding-top: 5px;
-    margin: auto;
+    text-align: center;
     max-width: 100%;
 }
 

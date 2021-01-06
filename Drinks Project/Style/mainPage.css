@@ -85,7 +85,8 @@ body{
 	transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
-#searchButton {
+.search .searchButton {
+	font-size:	15px;
 	border-color: black;
 	color: black;
 	background-color: whitesmoke;
@@ -95,9 +96,10 @@ body{
 	max-height: 50%;
 	border-width: 1px;
 	border-radius: 5px;
+	text-align: center;
 }
 
-#searchButton:hover {
+.search .searchButton:hover {
 	cursor: pointer;
 	background-color: black;
 	color: whitesmoke;
@@ -226,16 +228,18 @@ body{
 }
 
 .innerContent{
+	position: relative;
 	background-color: rgba(255, 166, 0, 0.8);
 	border-radius: 10px;
-	background-color: rgba(255, 166, 0, 0.8);
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
 }
 
+
 .childContent{
+	
 	display: flex;
 	justify-content: center;
 	align-items: center;

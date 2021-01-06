@@ -1,117 +1,109 @@
 const homePage = `
 <h3>Random Drinks</h3>
 <div class="childContent" id="randomDrinks">
-    <div class="drinkCard">
-        <img src="../Resources/sample.jpg">
-        <h3 class="cardTitle">Negroni</h3>
-        <p class="cardText">Stir into glass over ice, garnish and serve.</p>
-    </div>
-    <div class="drinkCard">
-        <img src="../Resources/sample.jpg">
-        <h3 class="cardTitle">Negroni</h3>
-        <p class="cardText">Stir into glass over ice, garnish and serve.</p>
-    </div>
-    <div class="drinkCard">
-        <img src="../Resources/sample.jpg">
-        <h3 class="cardTitle">Negroni</h3>
-        <p class="cardText">Stir into glass over ice, garnish and serve.</p>
-    </div>
-    <div class="drinkCard">
-        <img src="../Resources/sample.jpg">
-        <h3 class="cardTitle">Negroni</h3>
-        <p class="cardText">Stir into glass over ice, garnish and serve.</p>
-    </div>
-    <div class="drinkCard">
-        <img src="../Resources/sample.jpg">
-        <h3 class="cardTitle">Negroni</h3>
-        <p class="cardText">Stir into glass over ice, garnish and serve.</p>
-    </div>
 </div>
 <h3>Popular Drinks</h3>
 <div class="childContent" id="popularDrinks">
-    <div class="drinkCard">
-        <img src="../Resources/sample.jpg">
-        <h3 class="cardTitle">Negroni</h3>
-        <p class="cardText">Stir into glass over ice, garnish and serve.</p>
-    </div>
-    <div class="drinkCard">
-        <img src="../Resources/sample.jpg">
-        <h3 class="cardTitle">Negroni</h3>
-        <p class="cardText">Stir into glass over ice, garnish and serve.</p>
-    </div>
-    <div class="drinkCard">
-        <img src="../Resources/sample.jpg">
-        <h3 class="cardTitle">Negroni</h3>
-        <p class="cardText">Stir into glass over ice, garnish and serve.</p>
-    </div>
-    <div class="drinkCard">
-        <img src="../Resources/sample.jpg">
-        <h3 class="cardTitle">Negroni</h3>
-        <p class="cardText">Stir into glass over ice, garnish and serve.</p>
-    </div>
-    <div class="drinkCard">
-        <img src="../Resources/sample.jpg">
-        <h3 class="cardTitle">Negroni</h3>
-        <p class="cardText">Stir into glass over ice, garnish and serve.</p>
-    </div>
 </div>
 <h3>Latest Drinks</h3>
 <div class="childContent" id="latestDrinks">
-    <div class="drinkCard">
-        <img src="../Resources/sample.jpg">
-        <h3 class="cardTitle">Negroni</h3>
-        <p class="cardText">Stir into glass over ice, garnish and serve.</p>
-    </div>
-    <div class="drinkCard">
-        <img src="../Resources/sample.jpg">
-        <h3 class="cardTitle">Negroni</h3>
-        <p class="cardText">Stir into glass over ice, garnish and serve.</p>
-    </div>
-    <div class="drinkCard">
-        <img src="../Resources/sample.jpg">
-        <h3 class="cardTitle">Negroni</h3>
-        <p class="cardText">Stir into glass over ice, garnish and serve.</p>
-    </div>
-    <div class="drinkCard">
-        <img src="../Resources/sample.jpg">
-        <h3 class="cardTitle">Negroni</h3>
-        <p class="cardText">Stir into glass over ice, garnish and serve.</p>
-    </div>
-    <div class="drinkCard">
-        <img src="../Resources/sample.jpg">
-        <h3 class="cardTitle">Negroni</h3>
-        <p class="cardText">Stir into glass over ice, garnish and serve.</p>
-    </div>
 </div>
 <h3>Popular Ingredients</h3>
 <div class="childContent" id="popularIngredients">
-    <div class="drinkCard">
-        <img src="../Resources/sample.jpg">
-        <h3 class="cardTitle">Negroni</h3>
-        <p class="cardText">Stir into glass over ice, garnish and serve.</p>
-    </div>
-    <div class="drinkCard">
-        <img src="../Resources/sample.jpg">
-        <h3 class="cardTitle">Negroni</h3>
-        <p class="cardText">Stir into glass over ice, garnish and serve.</p>
-    </div>
-    <div class="drinkCard">
-        <img src="../Resources/sample.jpg">
-        <h3 class="cardTitle">Negroni</h3>
-        <p class="cardText">Stir into glass over ice, garnish and serve.</p>
-    </div>
-    <div class="drinkCard">
-        <img src="../Resources/sample.jpg">
-        <h3 class="cardTitle">Negroni</h3>
-        <p class="cardText">Stir into glass over ice, garnish and serve.</p>
-    </div>
-    <div class="drinkCard">
-        <img src="../Resources/sample.jpg">
-        <h3 class="cardTitle">Negroni</h3>
-        <p class="cardText">Stir into glass over ice, garnish and serve.</p>
-    </div>
 </div>
 `;
+
+const prepareDrinkCard = (json) =>{
+    let description = json.description;
+    if(description.length > 40)
+        description = description.substring(0, 40) + "...";
+    return `
+    <div id ="` + json.id + `" class="drinkCard" style="display:none;">
+        <img src="` + json.src + `"">
+        <h3 class="cardTitle">`+ json.name +`</h3>
+        <p class="cardText">` + description +`</p>
+    </div>
+    `;
+};
+
+const prepareDrinksRow = async (rowId, loading) =>{
+    let drinks = ``;
+    for(let i = 0; i < 5; i++){
+        if(loading){
+            drinks += `
+                <div class="drinkCard loading">
+                    <img src="../Resources/Home/cocktail.gif">
+                    <h3 class="cardTitle">Drink</h3>
+                    <p class="cardText">Description here.</p>
+                </div>
+                `;
+        } else {
+            let resp = await fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php').then(response => response.json());
+            let drink = resp.drinks[0];
+            drinks += prepareDrinkCard({id: drink.idDrink, description: drink.strInstructions, src: drink.strDrinkThumb, name: drink.strDrink});
+        }
+    }
+    if(loading)
+        document.getElementById(rowId).innerHTML += drinks;
+    else 
+        document.getElementById(rowId).innerHTML += drinks;
+};
+
+const prepareIngredientRow = async (rowId, loading) =>{
+    let ingredients = ``;
+    for(let i = 0; i < 5; i++){
+        if(loading){
+            ingredients += `
+            <div class="drinkCard loading">
+                <img src="../Resources/Home/cocktail.gif">
+                <h3 class="cardTitle">Drink</h3>
+                <p class="cardText">Description here.</p>
+            </div>
+            `;
+        } else {
+            let resp = await fetch('https://www.thecocktaildb.com/api/json/v1/1/lookup.php?iid=' + (i + 1)).then(response => response.json());
+        let ingredient = resp.ingredients[0];
+        ingredients += prepareDrinkCard({id: ingredient.idIngredient, description: ingredient.strDescription, 
+            src: "https://www.thecocktaildb.com/images/ingredients/" + ingredient.strIngredient + "-Medium.png", name: ingredient.strIngredient});
+        }
+        
+    }
+    if(loading)
+        document.getElementById(rowId).innerHTML += ingredients;
+    else 
+        document.getElementById(rowId).innerHTML += ingredients;
+};
+
+const replaceLoadings = (rowId) =>{
+    let childs = document.getElementById(rowId).children;
+    for(let i = 0; i < childs.length; i++){
+        if(childs[i].className == "drinkCard loading"){
+            childs[i].style.display="none";
+        } else {
+            childs[i].style.display="inline-block";
+            childs[i].className += " animate__animated animate__zoomIn";
+        }
+    }  
+};
+
+const prepareHome = async () => {
+    prepareDrinksRow('randomDrinks', false);
+    prepareDrinksRow('popularDrinks', false);
+    prepareDrinksRow('latestDrinks', false);
+    prepareIngredientRow('popularIngredients', false);
+
+    prepareDrinksRow('randomDrinks', true);
+    prepareDrinksRow('popularDrinks', true);
+    prepareDrinksRow('latestDrinks', true);
+    prepareIngredientRow('popularIngredients', true);
+
+    setTimeout(function() {
+        replaceLoadings('randomDrinks');
+        replaceLoadings('popularDrinks');
+        replaceLoadings('latestDrinks');
+        replaceLoadings('popularIngredients');
+    }, 5000);
+};
 
 const searchPage = `<h3>SearchPage</h3>`;
 
@@ -160,7 +152,7 @@ const aboutUsPage = `
     <div class="row">
         <img src="../Resources/AboutUs/who_we_are.jpg">	
         <p>
-            Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.
+            Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar. The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way. When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.     
         </p>
     </div>
 </div>
@@ -168,7 +160,7 @@ const aboutUsPage = `
 <div style="width: 100%;">
     <div class="row">
         <p>
-            The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way. When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way. On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country.	
+            On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country. But nothing the copy said could convince her and so it didn’t take long until a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged her into their agency, where they abused her for their projects again and again. And if she hasn’t been rewritten, then they are still using her. Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.     
         </p>
         <img src="../Resources/AboutUs/why_you_should_use_our_website.jpg">	
     </div>
@@ -178,7 +170,7 @@ const aboutUsPage = `
     <div class="row">
         <img src="../Resources/AboutUs/future_visions.jpg">	
         <p>
-            But nothing the copy said could convince her and so it didn’t take long until a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged her into their agency, where they abused her for their projects again and again. And if she hasn’t been rewritten, then they are still using her. Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One	
+            The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way. When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way. On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country.  
         </p>	
     </div>
 </div>
@@ -235,7 +227,7 @@ let prepareContact = () =>{
 };
 
 let pages = {
-    Home: {html:homePage, prepare: () =>{}},
+    Home: {html:homePage, prepare: () =>{prepareHome()}},
     Search: {html:searchPage, prepare: () =>{}},
     Credits: {html:CreditsPage, prepare: () =>{}},
     AboutUs: {html:aboutUsPage, prepare: () =>{}},

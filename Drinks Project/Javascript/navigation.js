@@ -18,5 +18,5 @@ let prepareNavigation = () =>{
         let page = menuItems[i].innerHTML;
         menuItems[i].addEventListener('click', ()=>{goToPage(page, 'animate__fadeInLeft')})
     }
-    document.getElementsByClassName('logo')[0].addEventListener('click', ()=>{goToPage('Home')})
+    document.getElementsByClassName('logo')[0].addEventListener('click', ()=>{goToPage('Home', 'animate__fadeInLeft')})
 }
