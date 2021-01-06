@@ -115,7 +115,44 @@ const homePage = `
 
 const searchPage = `<h3>SearchPage</h3>`;
 
-const CreditsPage = `<h3>CreditsPage</h3>`;
+const CreditsPage = `
+<div class="creditRow">
+    <div class="credit">
+        <img src="../Resources/Credits/google.png">
+        <h3> Special thanks to <a href="https://www.google.com/" target="_blank"> Google</a>!</h3>
+    </div>
+</div>
+<div class="creditRow">
+    <div class="credit">
+        <img src="../Resources/Credits/cocktail_db.png">
+        <h3> Special thanks to <a href="https://www.thecocktaildb.com/" target="_blank"> The Cocktail DB</a>!</h3>
+    </div>
+    <div class="credit">
+        <img src="../Resources/Credits/animation.png">
+        <h3> Special thanks to <a href="https://animate.style/" target="_blank"> Animatte.css</a>!</h3>
+    </div>
+</div>
+<div class="creditRow">
+    <div class="credit">
+        <img src="../Resources/Credits/icons.png">
+        <h3> Special thanks to <a href="https://www.flaticon.com/" target="_blank"> FlatIcon</a>!</h3>
+    </div>
+    <div class="credit">
+        <img src="../Resources/Credits/picresize.png">
+        <h3> Special thanks to <a href="https://picresize.com/" target="_blank"> PicResize</a>!</h3>
+    </div>
+</div>
+<div class="creditRow">
+    <div class="credit">
+        <img src="../Resources/Credits/text_generator.png">
+        <h3> Special thanks to <a href="https://www.blindtextgenerator.com/lorem-ipsum" target="_blank"> Blind Text Generator</a>!</h3>
+    </div>
+    <div class="credit">
+        <img src="../Resources/Credits/u_might_not_need_jquery.png">
+        <h3> Special thanks to <a href="http://youmightnotneedjquery.com/" target="_blank">You Might Not Need jQuery</a>!</h3>
+    </div>
+</div>
+`;
 
 const aboutUsPage = `
 <h3>Who We Are</h3>

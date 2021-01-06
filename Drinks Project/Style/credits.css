@@ -1,0 +1,28 @@
+.creditRow{
+    display: flex;
+	justify-content: center;
+    align-items: center;
+}
+
+.credit{
+    margin: 1% 2%;
+    display: flex;
+	justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.credit img{
+    border: solid black;
+    margin: 1%;
+    border-radius: 20px;
+}
+
+.credit h3 a{
+    color: black;
+    text-decoration: none;
+}
+
+.credit h3 a:hover{
+    color: white;
+}

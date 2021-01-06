@@ -226,6 +226,7 @@ body{
 }
 
 .innerContent{
+	background-color: rgba(255, 166, 0, 0.8);
 	border-radius: 10px;
 	background-color: rgba(255, 166, 0, 0.8);
 	display: flex;
