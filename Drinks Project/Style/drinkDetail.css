@@ -1,0 +1,43 @@
+.column{
+    width: 50%;
+    height: 100%;
+}
+
+.ingredientColumn{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.centerRow{
+    width: 100%;
+    display: flex;
+    justify-content: center;    
+    align-items: center;
+}
+
+.drinkImg{
+    background-color: wheat;
+    border-radius: 25px;
+    border: solid black;
+    width: 500px;
+    height: 500px;
+	max-width: 90%;
+    max-height: 90%;
+}
+
+.ingredientImg{
+    border-radius: 25px;
+    border: solid black;
+    background-color: lightslategray;
+    width: 200px;
+    height: 200px;
+	max-width: 50%;
+	max-height: 50%;
+}
+
+.instructions{
+    text-align: center;
+}

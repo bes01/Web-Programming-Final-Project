@@ -23,6 +23,7 @@ body{
 	position: relative;
 	height: 150px;
 	background-color: rgba(255, 166, 0, 0.8);
+	border: solid black;
 	margin-bottom: 1%;
 	border-radius: 10px;
 	display: flex;
@@ -44,6 +45,7 @@ body{
 
 .logoImg{
 	border-radius: 50%;
+	border: solid black;
 	max-width: 90%;
 	max-height: 90%;
 }
@@ -87,7 +89,7 @@ body{
 
 .search .searchButton {
 	font-size:	15px;
-	border-color: black;
+	border: solid black ;
 	color: black;
 	background-color: whitesmoke;
 	width: 60;
@@ -177,6 +179,7 @@ body{
 .menu{
 	height: 70;
 	background-color: rgba(255, 166, 0, 0.8);
+	border: solid black;
 	border-radius: 10px;
 	margin-bottom: 1%;
 }
@@ -229,6 +232,7 @@ body{
 
 .innerContent{
 	position: relative;
+	border: solid black;
 	background-color: rgba(255, 166, 0, 0.8);
 	border-radius: 10px;
 	display: flex;
@@ -239,7 +243,6 @@ body{
 
 
 .childContent{
-	
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -253,6 +256,7 @@ body{
 .Footer{
 	position: relative;
 	background-color: rgba(255, 166, 0, 0.8);
+	border: solid black;
 	border-radius: 10px;
 	padding: 10px;
 	display: flex;

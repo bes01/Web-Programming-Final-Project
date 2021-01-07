@@ -1,3 +1,10 @@
+let currentDrinkId = -1;
+
+let viewDrink = (id) =>{
+    currentDrinkId = id;
+    goToPage('Drink View', 'animate__zoomIn');
+}
+
 const homePage = `
 <h3>Random Drinks</h3>
 <div class="childContent" id="randomDrinks">
@@ -13,13 +20,16 @@ const homePage = `
 </div>
 `;
 
+let controller = new AbortController();
+let { signal } = controller;
+
 const prepareDrinkCard = (json) =>{
     let description = json.description;
     if(description.length > 40)
         description = description.substring(0, 40) + "...";
     return `
-    <div id ="` + json.id + `" class="drinkCard" style="display:none;">
-        <img src="` + json.src + `"">
+    <div id ="` + json.id + `" class="drinkCard" style="display:none" onclick="viewDrink(` + json.id + `)">
+        <img src="` + json.src + `">
         <h3 class="cardTitle">`+ json.name +`</h3>
         <p class="cardText">` + description +`</p>
     </div>
@@ -28,54 +38,70 @@ const prepareDrinkCard = (json) =>{
 
 const prepareDrinksRow = async (rowId, loading) =>{
     let drinks = ``;
+    let stop = false;
     for(let i = 0; i < 5; i++){
         if(loading){
             drinks += `
-                <div class="drinkCard loading">
+                <div class="drinkCard loading" onclick="showMessage('Please, be patient. Wait until the card is fully loaded', 'error')">
                     <img src="../Resources/Home/cocktail.gif">
                     <h3 class="cardTitle">Drink</h3>
                     <p class="cardText">Description here.</p>
                 </div>
                 `;
         } else {
-            let resp = await fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php').then(response => response.json());
+            let resp = await fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php', { signal }).then(response => response.json()).catch((error) => {
+                stop = true;
+            });
+            if(stop)
+                return;
             let drink = resp.drinks[0];
             drinks += prepareDrinkCard({id: drink.idDrink, description: drink.strInstructions, src: drink.strDrinkThumb, name: drink.strDrink});
         }
     }
-    if(loading)
-        document.getElementById(rowId).innerHTML += drinks;
-    else 
-        document.getElementById(rowId).innerHTML += drinks;
+    if(document.getElementById(rowId) != null){
+        if(loading)
+            document.getElementById(rowId).innerHTML += drinks;
+        else 
+            document.getElementById(rowId).innerHTML += drinks;
+    }
 };
 
 const prepareIngredientRow = async (rowId, loading) =>{
     let ingredients = ``;
+    let stop = false;
     for(let i = 0; i < 5; i++){
         if(loading){
             ingredients += `
-            <div class="drinkCard loading">
+            <div class="drinkCard loading" onclick="showMessage('Please, be patient. Wait until the card is fully loaded', 'error')">
                 <img src="../Resources/Home/cocktail.gif">
                 <h3 class="cardTitle">Drink</h3>
                 <p class="cardText">Description here.</p>
             </div>
             `;
         } else {
-            let resp = await fetch('https://www.thecocktaildb.com/api/json/v1/1/lookup.php?iid=' + (i + 1)).then(response => response.json());
-        let ingredient = resp.ingredients[0];
-        ingredients += prepareDrinkCard({id: ingredient.idIngredient, description: ingredient.strDescription, 
-            src: "https://www.thecocktaildb.com/images/ingredients/" + ingredient.strIngredient + "-Medium.png", name: ingredient.strIngredient});
+            let resp = await fetch('https://www.thecocktaildb.com/api/json/v1/1/lookup.php?iid=' + (i + 1), { signal }).then(response => response.json()).catch((error) => {
+                stop = true;
+            });
+            if(stop)
+                return;
+            let ingredient = resp.ingredients[0];
+            ingredients += prepareDrinkCard({id: ingredient.idIngredient, description: ingredient.strDescription, 
+                src: "https://www.thecocktaildb.com/images/ingredients/" + ingredient.strIngredient + "-Medium.png", name: ingredient.strIngredient});
         }
-        
     }
-    if(loading)
-        document.getElementById(rowId).innerHTML += ingredients;
-    else 
-        document.getElementById(rowId).innerHTML += ingredients;
+    if(document.getElementById(rowId) != null){
+        if(loading)
+            document.getElementById(rowId).innerHTML += ingredients ;
+        else
+            document.getElementById(rowId).innerHTML += ingredients;
+    }
 };
 
 const replaceLoadings = (rowId) =>{
-    let childs = document.getElementById(rowId).children;
+    let parent = document.getElementById(rowId);
+    if(parent == null)
+        return;
+    let childs = parent.children;
     for(let i = 0; i < childs.length; i++){
         if(childs[i].className == "drinkCard loading"){
             childs[i].style.display="none";
@@ -86,23 +112,42 @@ const replaceLoadings = (rowId) =>{
     }  
 };
 
-const prepareHome = async () => {
-    prepareDrinksRow('randomDrinks', false);
-    prepareDrinksRow('popularDrinks', false);
-    prepareDrinksRow('latestDrinks', false);
-    prepareIngredientRow('popularIngredients', false);
+const changeRowIds = (rowId, dummy) =>{
+    document.getElementById(rowId).id = rowId + dummy
+}
 
-    prepareDrinksRow('randomDrinks', true);
-    prepareDrinksRow('popularDrinks', true);
-    prepareDrinksRow('latestDrinks', true);
-    prepareIngredientRow('popularIngredients', true);
+const prepareHome = async () => {
+    // To abort previous calls
+    controller.abort();
+    
+    controller = new AbortController();
+    signal = controller.signal;
+
+    // To change new/existing div, not previous
+    let dummies = ['randomDrinks', 'popularDrinks', 'latestDrinks', 'popularIngredients'];
+    for(let i = 0; i < 4; i++){
+        let dummy = Math.random();
+        changeRowIds(dummies[i], dummy);
+        dummies[i] += dummy;
+    }
+
+    prepareDrinksRow(dummies[0], false);
+    prepareDrinksRow(dummies[1], false);
+    prepareDrinksRow(dummies[2], false);
+    prepareIngredientRow(dummies[3], false);
+
+
+    prepareDrinksRow(dummies[0], true);
+    prepareDrinksRow(dummies[1], true);
+    prepareDrinksRow(dummies[2], true);
+    prepareIngredientRow(dummies[3], true);
 
     setTimeout(function() {
-        replaceLoadings('randomDrinks');
-        replaceLoadings('popularDrinks');
-        replaceLoadings('latestDrinks');
-        replaceLoadings('popularIngredients');
-    }, 5000);
+        replaceLoadings(dummies[0]);
+        replaceLoadings(dummies[1]);
+        replaceLoadings(dummies[2]);
+        replaceLoadings(dummies[3]);
+    }, 4000);
 };
 
 const searchPage = `<h3>SearchPage</h3>`;
@@ -111,37 +156,37 @@ const CreditsPage = `
 <div class="creditRow">
     <div class="credit">
         <img src="../Resources/Credits/google.png">
-        <h3> Special thanks to <a href="https://www.google.com/" target="_blank"> Google</a>!</h3>
+        <h3> Special thanks to <a href="https://www.google.com/" target="_blank"> Google</a> for everything.</h3>
     </div>
 </div>
 <div class="creditRow">
     <div class="credit">
         <img src="../Resources/Credits/cocktail_db.png">
-        <h3> Special thanks to <a href="https://www.thecocktaildb.com/" target="_blank"> The Cocktail DB</a>!</h3>
+        <h3> Thanks <a href="https://www.thecocktaildb.com/" target="_blank"> The Cocktail DB</a> for the drink jasons.</h3>
     </div>
     <div class="credit">
         <img src="../Resources/Credits/animation.png">
-        <h3> Special thanks to <a href="https://animate.style/" target="_blank"> Animatte.css</a>!</h3>
+        <h3>Thanks <a href="https://animate.style/" target="_blank"> Animatte.css</a> for cool css animations.</h3>
     </div>
 </div>
 <div class="creditRow">
     <div class="credit">
         <img src="../Resources/Credits/icons.png">
-        <h3> Special thanks to <a href="https://www.flaticon.com/" target="_blank"> FlatIcon</a>!</h3>
+        <h3> Thanks <a href="https://www.flaticon.com/" target="_blank"> FlatIcon</a> for fancy footer icons.</h3>
     </div>
     <div class="credit">
         <img src="../Resources/Credits/picresize.png">
-        <h3> Special thanks to <a href="https://picresize.com/" target="_blank"> PicResize</a>!</h3>
+        <h3> Thanks <a href="https://picresize.com/" target="_blank"> PicResize</a> for resizing static images.</h3>
     </div>
 </div>
 <div class="creditRow">
     <div class="credit">
         <img src="../Resources/Credits/text_generator.png">
-        <h3> Special thanks to <a href="https://www.blindtextgenerator.com/lorem-ipsum" target="_blank"> Blind Text Generator</a>!</h3>
+        <h3> Thanks <a href="https://www.blindtextgenerator.com/lorem-ipsum" target="_blank"> Blind Text Generator</a> for random textes.</h3>
     </div>
     <div class="credit">
         <img src="../Resources/Credits/u_might_not_need_jquery.png">
-        <h3> Special thanks to <a href="http://youmightnotneedjquery.com/" target="_blank">You Might Not Need jQuery</a>!</h3>
+        <h3> And thanks <a href="http://youmightnotneedjquery.com/" target="_blank">Y.M.N.N.jQ.</a> for not using jQuery.</h3>
     </div>
 </div>
 `;
@@ -226,10 +271,69 @@ let prepareContact = () =>{
     })
 };
 
+const DrinkViewPage = `
+<div class="centerRow">
+    <div class="column"  style="text-align: center;">
+        <h2 id='drinkName' ></h2>
+        <img id ='drinkImage'  class="drinkImg" >
+    </div>
+    <div class="column">
+        <h2 style="text-align: center;">Ingredients</h2>
+        <div id='ingredients' class="ingredientColumn">
+        </div>
+    </div>
+</div>
+<div class="ingredientColumn">
+    <h2>Instrucions</h2>
+    <h3 id='drinkInstructions' class="instructions"></h3>
+</div>
+`;
+
+let prepareDrinkView = async () =>{
+    let resp = await fetch('https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=' + currentDrinkId).then(response => response.json())
+    let drink = resp.drinks[0];
+
+    document.getElementById('drinkName').innerHTML = drink.strDrink;
+    document.getElementById('drinkImage').src = drink.strDrinkThumb;
+    document.getElementById('drinkInstructions').innerHTML = drink.strInstructions;
+
+    let ingredientNames = [];
+    for(let i = 1; i >0; i++){
+        if(drink['strIngredient' + i] == null)
+            break;
+        ingredientNames.push(drink['strIngredient' + i]);
+    }
+
+    let ingredientDivs = ``;
+    for(let i = 0; i < ingredientNames.length; i++){
+        if(i % 2 == 0){
+            ingredientDivs += `<div class="centerRow">
+                                    <div class="ingredientColumn">
+                                        <img class="ingredientImg" src="https://www.thecocktaildb.com/images/ingredients/` + ingredientNames[i] +`-Medium.png">
+                                        <h3>` + ingredientNames[i] +`</h3>
+                                    </div>
+                                `;
+        } else {
+            ingredientDivs += `
+                                    <div class="ingredientColumn">
+                                        <img class="ingredientImg" src="https://www.thecocktaildb.com/images/ingredients/` + ingredientNames[i] +`-Medium.png">
+                                        <h3>` + ingredientNames[i] +`</h3>
+                                    </div>
+                                </div>    
+                                `;
+        }
+    }
+    if(ingredientNames.length % 2 == 1)
+        ingredientDivs += `</div>`
+
+    document.getElementById('ingredients').innerHTML = ingredientDivs;
+}
+
 let pages = {
     Home: {html:homePage, prepare: () =>{prepareHome()}},
     Search: {html:searchPage, prepare: () =>{}},
     Credits: {html:CreditsPage, prepare: () =>{}},
     AboutUs: {html:aboutUsPage, prepare: () =>{}},
-    Contact: {html:contactPage, prepare: () =>{prepareContact()}}
+    Contact: {html:contactPage, prepare: () =>{prepareContact()}},
+    DrinkView: {html:DrinkViewPage, prepare: ()=>{prepareDrinkView()}}
 };
