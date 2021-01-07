@@ -1,0 +1,30 @@
+.ingredientRow{
+    width: 100%;
+    display: flex;
+    justify-content: center;    
+    align-items: center;
+}
+
+.ingredientRow .column{
+    width: 50%;
+}
+
+.ingredientRow .column img{
+    border: solid black;
+    background-color: lightslategray;
+    border-radius: 25px;
+    width: 500px;
+    height: 500px;
+	max-width: 90%;
+    max-height: 90%;
+    margin: auto;
+}
+
+.ingredientRow .column h2{
+    text-align: center;
+}
+
+.ingredientRow .column h4{
+    text-align: center;
+    padding: 20px;
+}

@@ -1,8 +1,16 @@
 let currentDrinkId = -1;
+let currentIngredientId = -1;
 
-let viewDrink = (id) =>{
+let viewDrink = (id, choose) =>{
     currentDrinkId = id;
-    goToPage('Drink View', 'animate__zoomIn');
+    if(choose == "drink")
+        goToPage('Drink View', 'animate__zoomIn');
+}
+
+let viewIngredient = (id, choose) =>{
+    currentIngredientId = id;
+    if(choose == "ingredient")
+        goToPage('Ingredient View', 'animate__zoomIn');
 }
 
 const homePage = `
@@ -23,13 +31,24 @@ const homePage = `
 let controller = new AbortController();
 let { signal } = controller;
 
-const prepareDrinkCard = (json) =>{
+const showDrink = (rowId, index, cardId) =>{
+    let temp = document.getElementById(rowId).children[index];
+    document.getElementById(rowId).children[index] = document.getElementById(rowId).children[index + 5];
+    document.getElementById(rowId).children[index + 5] = temp;
+    
+    document.getElementById(rowId).children[index].style.display = 'none';
+    let card = document.getElementById(cardId);
+    card.style.display = 'inline-block ';
+    card.className += ' animate__animated animate__zoomIn';
+}
+
+const prepareDrinkCard = (json, rowId, index, choose) =>{
     let description = json.description;
     if(description.length > 40)
         description = description.substring(0, 40) + "...";
     return `
-    <div id ="` + json.id + `" class="drinkCard" style="display:none" onclick="viewDrink(` + json.id + `)">
-        <img src="` + json.src + `">
+    <div id ="` + json.id + `" class="drinkCard" style="display:none" onclick="viewDrink(` + json.id + `,'` + choose +`'); viewIngredient(` + json.id + `,'` + choose +`');">
+        <img src="` + json.src + `" onload="showDrink('` + rowId +`',` + index +`,'`+ json.id +`')">
         <h3 class="cardTitle">`+ json.name +`</h3>
         <p class="cardText">` + description +`</p>
     </div>
@@ -55,7 +74,7 @@ const prepareDrinksRow = async (rowId, loading) =>{
             if(stop)
                 return;
             let drink = resp.drinks[0];
-            drinks += prepareDrinkCard({id: drink.idDrink, description: drink.strInstructions, src: drink.strDrinkThumb, name: drink.strDrink});
+            drinks += prepareDrinkCard({id: drink.idDrink, description: drink.strInstructions, src: drink.strDrinkThumb, name: drink.strDrink}, rowId, i, "drink");
         }
     }
     if(document.getElementById(rowId) != null){
@@ -86,7 +105,7 @@ const prepareIngredientRow = async (rowId, loading) =>{
                 return;
             let ingredient = resp.ingredients[0];
             ingredients += prepareDrinkCard({id: ingredient.idIngredient, description: ingredient.strDescription, 
-                src: "https://www.thecocktaildb.com/images/ingredients/" + ingredient.strIngredient + "-Medium.png", name: ingredient.strIngredient});
+                src: "https://www.thecocktaildb.com/images/ingredients/" + ingredient.strIngredient + "-Medium.png", name: ingredient.strIngredient}, rowId, i, "ingredient");
         }
     }
     if(document.getElementById(rowId) != null){
@@ -97,20 +116,6 @@ const prepareIngredientRow = async (rowId, loading) =>{
     }
 };
 
-const replaceLoadings = (rowId) =>{
-    let parent = document.getElementById(rowId);
-    if(parent == null)
-        return;
-    let childs = parent.children;
-    for(let i = 0; i < childs.length; i++){
-        if(childs[i].className == "drinkCard loading"){
-            childs[i].style.display="none";
-        } else {
-            childs[i].style.display="inline-block";
-            childs[i].className += " animate__animated animate__zoomIn";
-        }
-    }  
-};
 
 const changeRowIds = (rowId, dummy) =>{
     document.getElementById(rowId).id = rowId + dummy
@@ -136,18 +141,10 @@ const prepareHome = async () => {
     prepareDrinksRow(dummies[2], false);
     prepareIngredientRow(dummies[3], false);
 
-
     prepareDrinksRow(dummies[0], true);
     prepareDrinksRow(dummies[1], true);
     prepareDrinksRow(dummies[2], true);
     prepareIngredientRow(dummies[3], true);
-
-    setTimeout(function() {
-        replaceLoadings(dummies[0]);
-        replaceLoadings(dummies[1]);
-        replaceLoadings(dummies[2]);
-        replaceLoadings(dummies[3]);
-    }, 4000);
 };
 
 const searchPage = `<h3>SearchPage</h3>`;
@@ -290,7 +287,7 @@ const DrinkViewPage = `
 `;
 
 let prepareDrinkView = async () =>{
-    let resp = await fetch('https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=' + currentDrinkId).then(response => response.json())
+    let resp = await fetch('https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=' + currentDrinkId).then(response => response.json());
     let drink = resp.drinks[0];
 
     document.getElementById('drinkName').innerHTML = drink.strDrink;
@@ -329,11 +326,35 @@ let prepareDrinkView = async () =>{
     document.getElementById('ingredients').innerHTML = ingredientDivs;
 }
 
+const IngredientViewPage = 
+`
+<div class="ingredientRow">
+    <div class="column">
+        <h2 id="ingredientName"></h2>
+        <img id="ingredientImage" src="">
+    </div>
+    <div class="column">
+        <h2>Description</h2>
+        <h4 id="ingredientDescription"></h4>
+    </div>
+</div>
+`;
+
+let prepareIngredientView = async () =>{
+    let ingredient = await fetch('https://www.thecocktaildb.com/api/json/v1/1/lookup.php?iid=' + currentIngredientId).then(response => response.json());
+    ingredient = ingredient.ingredients[0];
+    
+    document.getElementById('ingredientName').innerHTML = ingredient.strIngredient;
+    document.getElementById('ingredientDescription').innerHTML = ingredient.strDescription;
+    document.getElementById('ingredientImage').src = 'https://www.thecocktaildb.com/images/ingredients/' + ingredient.strIngredient + '.png';
+}
+
 let pages = {
     Home: {html:homePage, prepare: () =>{prepareHome()}},
     Search: {html:searchPage, prepare: () =>{}},
     Credits: {html:CreditsPage, prepare: () =>{}},
     AboutUs: {html:aboutUsPage, prepare: () =>{}},
     Contact: {html:contactPage, prepare: () =>{prepareContact()}},
-    DrinkView: {html:DrinkViewPage, prepare: ()=>{prepareDrinkView()}}
+    DrinkView: {html:DrinkViewPage, prepare: ()=>{prepareDrinkView()}},
+    IngredientView: {html:IngredientViewPage, prepare: ()=>{prepareIngredientView()}}
 };
