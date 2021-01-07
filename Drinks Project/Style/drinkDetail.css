@@ -13,6 +13,10 @@
     flex-wrap: nowrap;
 }
 
+.ingredientColumn:hover{
+    cursor: pointer;
+}
+
 .centerRow{
     width: 100%;
     display: flex;

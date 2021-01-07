@@ -286,6 +286,11 @@ const DrinkViewPage = `
 </div>
 `;
 
+let linkToIngredient = async (name)=> {
+    let ingredient = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?i=' + name).then(response => response.json());
+    viewIngredient(ingredient.ingredients[0].idIngredient, "ingredient");
+}
+
 let prepareDrinkView = async () =>{
     let resp = await fetch('https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=' + currentDrinkId).then(response => response.json());
     let drink = resp.drinks[0];
@@ -305,14 +310,14 @@ let prepareDrinkView = async () =>{
     for(let i = 0; i < ingredientNames.length; i++){
         if(i % 2 == 0){
             ingredientDivs += `<div class="centerRow">
-                                    <div class="ingredientColumn">
+                                    <div class="ingredientColumn" onclick="linkToIngredient('`+ ingredientNames[i] +`')">
                                         <img class="ingredientImg" src="https://www.thecocktaildb.com/images/ingredients/` + ingredientNames[i] +`-Medium.png">
                                         <h3>` + ingredientNames[i] +`</h3>
                                     </div>
                                 `;
         } else {
             ingredientDivs += `
-                                    <div class="ingredientColumn">
+                                    <div class="ingredientColumn" onclick="linkToIngredient('`+ ingredientNames[i] +`')">
                                         <img class="ingredientImg" src="https://www.thecocktaildb.com/images/ingredients/` + ingredientNames[i] +`-Medium.png">
                                         <h3>` + ingredientNames[i] +`</h3>
                                     </div>
@@ -345,7 +350,7 @@ let prepareIngredientView = async () =>{
     ingredient = ingredient.ingredients[0];
     
     document.getElementById('ingredientName').innerHTML = ingredient.strIngredient;
-    document.getElementById('ingredientDescription').innerHTML = ingredient.strDescription;
+    document.getElementById('ingredientDescription').innerHTML = ingredient.strDescription == undefined ? 'No description was found :(' : ingredient.strDescription;
     document.getElementById('ingredientImage').src = 'https://www.thecocktaildb.com/images/ingredients/' + ingredient.strIngredient + '.png';
 }
 
