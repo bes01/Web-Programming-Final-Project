@@ -309,17 +309,17 @@ let prepareDrinkView = async () =>{
     let ingredientDivs = ``;
     for(let i = 0; i < ingredientNames.length; i++){
         if(i % 2 == 0){
-            ingredientDivs += `<div class="centerRow">
-                                    <div class="ingredientColumn" onclick="linkToIngredient('`+ ingredientNames[i] +`')">
+            ingredientDivs += `<div class="ingredientRow">
+                                    <div class="ingredientColumn" >
                                         <img class="ingredientImg" src="https://www.thecocktaildb.com/images/ingredients/` + ingredientNames[i] +`-Medium.png">
-                                        <h3>` + ingredientNames[i] +`</h3>
+                                        <h3 class="link" onclick="linkToIngredient('`+ ingredientNames[i] +`')">` + ingredientNames[i] +`</h3>
                                     </div>
                                 `;
         } else {
             ingredientDivs += `
-                                    <div class="ingredientColumn" onclick="linkToIngredient('`+ ingredientNames[i] +`')">
+                                    <div class="ingredientColumn" >
                                         <img class="ingredientImg" src="https://www.thecocktaildb.com/images/ingredients/` + ingredientNames[i] +`-Medium.png">
-                                        <h3>` + ingredientNames[i] +`</h3>
+                                        <h3 class="link" onclick="linkToIngredient('`+ ingredientNames[i] +`')">` + ingredientNames[i] +`</h3>
                                     </div>
                                 </div>    
                                 `;
@@ -333,7 +333,7 @@ let prepareDrinkView = async () =>{
 
 const IngredientViewPage = 
 `
-<div class="ingredientRow">
+<div class="ingredientRowVol2">
     <div class="column">
         <h2 id="ingredientName"></h2>
         <img id="ingredientImage" src="">

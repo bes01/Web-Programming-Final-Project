@@ -5,16 +5,19 @@
     margin-bottom: 30px;
 }
 
+.ingredientRow{
+    width: 100%;
+    display: flex;
+    justify-content: center;    
+    align-items: center;
+}
+
 .ingredientColumn{
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     flex-wrap: nowrap;
-}
-
-.ingredientColumn:hover{
-    cursor: pointer;
 }
 
 .centerRow{
@@ -44,6 +47,21 @@
 	max-height: 50%;
 }
 
+.link:hover{
+    color: whitesmoke;
+    cursor: pointer;
+}
+
 .instructions{
     text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+	.centerRow{
+        flex-direction: column;
+    }
+
+    .column{
+        width: 100%;
+    }
 }

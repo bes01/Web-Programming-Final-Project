@@ -72,3 +72,13 @@
     background-color: black;
     color: white;
 }
+
+@media only screen and (max-width: 600px) {
+	.contact{
+        flex-direction: column;
+    }
+
+    .right{
+        width: 100%;
+    }
+}

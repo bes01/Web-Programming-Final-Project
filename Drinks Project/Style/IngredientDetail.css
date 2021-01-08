@@ -1,15 +1,15 @@
-.ingredientRow{
+.ingredientRowVol2{
     width: 100%;
     display: flex;
     justify-content: center;    
     align-items: center;
 }
 
-.ingredientRow .column{
+.ingredientRowVol2 .column{
     width: 50%;
 }
 
-.ingredientRow .column img{
+.ingredientRowVol2 .column img{
     border: solid black;
     background-color: lightslategray;
     border-radius: 25px;
@@ -20,11 +20,20 @@
     margin: auto;
 }
 
-.ingredientRow .column h2{
+.ingredientRowVol2 .column h2{
     text-align: center;
 }
 
-.ingredientRow .column h4{
+.ingredientRowVol2 .column h4{
     text-align: center;
     padding: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+	.ingredientRowVol2{
+        flex-direction: column;
+    }
+    .ingredientRowVol2 .column{
+        width: 100%;
+    }
 }
