@@ -164,7 +164,7 @@ const searchPage = `
 <div class="result">
     <h3>Results</h3>
     <div id="result">
-        <h4>No drinks where searched yet :)</h4>
+        <h4>No drinks were searched yet :)</h4>
     </div>
 </div>
 `;
