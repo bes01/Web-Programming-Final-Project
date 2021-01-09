@@ -12,10 +12,14 @@ let searchByName = async () => {
     }
     input.value = '';
 
-    goToPage('Search', 'animate__zoomIn')
     let url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + value;
     let drinks = await fetch(url).then(response => response.json());
-    renderDrinks(drinks.drinks)
+    goToPage('Search', 'animate__zoomIn')
+
+    if(drinks.drinks != null)
+        renderDrinks(drinks.drinks);
+    else 
+        document.getElementById('result').innerHTML = `<h4>No drinks were found with provided name :(</h4>`;
 }
 
 
