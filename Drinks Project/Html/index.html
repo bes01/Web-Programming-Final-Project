@@ -8,6 +8,7 @@
 		<link rel="stylesheet" href="../Style/credits.css">
 		<link rel="stylesheet" href="../Style/drinkDetail.css">
 		<link rel="stylesheet" href="../Style/IngredientDetail.css">
+		<link rel="stylesheet" href="../Style/searchPage.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +16,7 @@
 		<script src="../Javascript/pageConstants.js"></script>
 		<script src="../Javascript/popUpMessage.js"></script>
 		<script src="../Javascript/navigation.js"></script>
+		<script src="../Javascript/nameSearch.js"></script>
 		<script src="../Javascript/footer.js"></script>
 	</head>
 	<body class="body">
@@ -43,9 +45,10 @@
 				<div class="search">
 					<h4 style="margin: 0;">Find Your Drink</h4>
 					<input type="text" id ="searchDrink" placeholder="Search for a Cocktail..."> 
-					<div class="searchButton">Search</div>
+					<div id="searchButton" class="searchButton">Search</div>
 				</div>
 			</div>
+			<script>prepareSearch()</script>
 			<!-- /
 				Menu-Start
 			 -->

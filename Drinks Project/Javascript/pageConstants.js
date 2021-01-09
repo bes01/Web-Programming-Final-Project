@@ -1,16 +1,14 @@
 let currentDrinkId = -1;
 let currentIngredientId = -1;
 
-let viewDrink = (id, choose) =>{
-    currentDrinkId = id;
-    if(choose == "drink")
+let view = (id, choose) =>{
+    if(choose == "drink"){
+        currentDrinkId = id;
         goToPage('Drink View', 'animate__zoomIn');
-}
-
-let viewIngredient = (id, choose) =>{
-    currentIngredientId = id;
-    if(choose == "ingredient")
+    }else{
+        currentIngredientId = id;
         goToPage('Ingredient View', 'animate__zoomIn');
+    }
 }
 
 const homePage = `
@@ -47,7 +45,7 @@ const prepareDrinkCard = (json, rowId, index, choose) =>{
     if(description.length > 40)
         description = description.substring(0, 40) + "...";
     return `
-    <div id ="` + json.id + `" class="drinkCard" style="display:none" onclick="viewDrink(` + json.id + `,'` + choose +`'); viewIngredient(` + json.id + `,'` + choose +`');">
+    <div id ="` + json.id + `" class="drinkCard" style="display:none" onclick="view(` + json.id + `,'` + choose +`')">
         <img src="` + json.src + `" onload="showDrink('` + rowId +`',` + index +`,'`+ json.id +`')">
         <h3 class="cardTitle">`+ json.name +`</h3>
         <p class="cardText">` + description +`</p>
@@ -147,7 +145,93 @@ const prepareHome = async () => {
     prepareIngredientRow(dummies[3], true);
 };
 
-const searchPage = `<h3>SearchPage</h3>`;
+const searchPage = `
+<div class="filter">
+    <select id='type' class="select" onchange="enableValueSelect()">
+        <option value="" selected disabled hidden>Type</option>
+        <option value="i">Ingredient</option>
+        <option value="a">Alcoholic</option>
+        <option value="c">Category</option>
+        <option value="g">Glass</option>
+    </select>
+    <select id='value' disabled>
+        <option value="" selected disabled hidden>Value</option>
+    </select>
+    <div class="filterButton" onclick="filter()">
+        Filter
+    </div>
+</div>
+<div class="result">
+    <h3>Results</h3>
+    <div id="result">
+        <h4>No drinks where searched yet :)</h4>
+    </div>
+</div>
+`;
+
+let enableValueSelect = async () =>{
+    let type = document.getElementById('type');
+    let url = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?' + type.value + '=list';
+    let values = await fetch(url).then(response => response.json());
+    let valueField = document.getElementById('value');
+    valueField.innerHTML = '<option value="" selected disabled hidden>Value</option>';
+    valueField.disabled = true;    
+
+    values = Object.values(values)[0];
+    for(let i = 0; i < values.length; i++)
+        values[i] = Object.values(values[i])[0];
+    values.sort();
+
+    /* 
+        First element is empty in glass options.
+    */
+    let i = 0;
+    if(type.value == 'g')
+        i++;
+    /* ------------------------------------------ */
+
+    for(; i < values.length; i++)
+        valueField.innerHTML += `
+                <option value="${values[i]}">${values[i]}</option>
+            `;
+
+    valueField.disabled = false;    
+};
+
+let renderDrinks = (drinks) =>{
+    let result = ``;
+
+    for(let i = 0; i < drinks.length; i++){
+        result += `
+        <div id ="${drinks[i].idDrink}" class="drinkCard" onclick="view('${drinks[i].idDrink}','drink');">
+            <img src="${drinks[i].strDrinkThumb}" >
+            <h3 class="cardTitle">${drinks[i].strDrink}</h3>
+        </div>
+        `;
+    }
+
+    document.getElementById('result').innerHTML = result;
+}
+
+let filter = async ()=>{
+    let type = document.getElementById('type');
+    let value = document.getElementById('value');
+    if(type.value == ""){
+        showMessage('Please, first select type of search.', 'error');
+        return;
+    }
+    if(value.value == ""){
+        showMessage('Ensure, you have entered the value field.', 'error');
+        return;
+    }
+
+    value = value.value.split(' ').join('_')
+    let url = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?' + type.value + '=' + value;
+    let drinks = await fetch(url).then(response => response.json());
+    drinks = drinks.drinks;
+
+    renderDrinks(drinks);
+};
 
 const CreditsPage = `
 <div class="creditRow">
@@ -179,7 +263,7 @@ const CreditsPage = `
 <div class="creditRow">
     <div class="credit">
         <img src="../Resources/Credits/text_generator.png">
-        <h3> Thanks <a href="https://www.blindtextgenerator.com/lorem-ipsum" target="_blank"> Blind Text Generator</a> for random textes.</h3>
+        <h3> Thanks <a href="https://www.blindtextgenerator.com/lorem-ipsum" target="_blank"> Blind Text Generator</a> for random texts.</h3>
     </div>
     <div class="credit">
         <img src="../Resources/Credits/u_might_not_need_jquery.png">
@@ -288,7 +372,7 @@ const DrinkViewPage = `
 
 let linkToIngredient = async (name)=> {
     let ingredient = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?i=' + name).then(response => response.json());
-    viewIngredient(ingredient.ingredients[0].idIngredient, "ingredient");
+    view(ingredient.ingredients[0].idIngredient, "ingredient");
 }
 
 let prepareDrinkView = async () =>{
