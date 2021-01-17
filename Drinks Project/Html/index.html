@@ -11,6 +11,7 @@
 		<link rel="stylesheet" href="../Style/searchPage.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 		<script src="../Javascript/pageConstants.js"></script>
@@ -60,6 +61,19 @@
 					<li class="item">Contact</li>
 					<li class="item">Credits</li>
 				</ul>
+			</div>
+			<div class="burgerMenu animate__animated animate__lightSpeedInLeft">
+				<h3 id='page' >Home</h3>
+				<div id="burger" style="display: none;">
+					<div class="active">Home</div>
+					<div >Search</div>
+					<div >About Us</div>
+					<div >Contact</div>
+					<div >Credits</div>
+				</div>
+				<a class="icon" onclick="showBurger()">
+					<i class="fa fa-bars"></i>
+				</a>
 			</div>
 			<script>prepareNavigation();</script>
 			<!-- /

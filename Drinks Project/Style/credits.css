@@ -31,8 +31,17 @@
     color: white;
 }
 
-@media only screen and (max-width: 1300px) {
+@media only screen and (max-width: 900px) {
 	.creditRow{
         flex-direction: column;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+	.credit img{
+        width: 80%;
+    }
+    .credit h3{
+        font-size: small;
     }
 }

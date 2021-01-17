@@ -273,7 +273,7 @@ const CreditsPage = `
 `;
 
 const aboutUsPage = `
-<h3>Who We Are</h3>
+<h3 class="centerText" >Who We Are</h3>
 <div style="width: 100%;">
     <div class="row">
         <img src="../Resources/AboutUs/who_we_are.jpg">	
@@ -282,7 +282,7 @@ const aboutUsPage = `
         </p>
     </div>
 </div>
-<h3>Why you should use our Website</h3>
+<h3 class="centerText" >Why you should use our Website</h3>
 <div style="width: 100%;">
     <div class="row">
         <p>
@@ -291,7 +291,7 @@ const aboutUsPage = `
         <img src="../Resources/AboutUs/why_you_should_use_our_website.jpg">	
     </div>
 </div>
-<h3>Future Visions</h3>
+<h3 class="centerText" >Future Visions</h3>
 <div style="width: 100%;">
     <div class="row">
         <img src="../Resources/AboutUs/future_visions.jpg">	

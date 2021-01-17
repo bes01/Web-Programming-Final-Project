@@ -65,3 +65,15 @@
         width: 100%;
     }
 }
+
+@media only screen and (max-width: 520px) {
+	.drinkImg{
+        width: 300px;
+        height: 300px;
+    }
+    
+    .ingredientImg{
+        width: 120px;
+        height: 120px;
+    }
+}

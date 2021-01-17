@@ -15,18 +15,29 @@
     margin: 0% 2%;
 }
 
+.centerText{
+    text-align: center;
+}
+
 @media only screen and (max-width: 1000px) {
 	.row{
         flex-direction: column;
     }
 
     .row img{
-        margin: 5% 10%;
+        margin: 5% 25%;
         margin-top: 5px;
     }
 
     .row p{
         text-indent: 50px;
         margin: 5% 10%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .row img{
+        margin: 0 10%;
+        margin-top: 5px;
     }
 }
