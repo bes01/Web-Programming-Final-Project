@@ -350,12 +350,57 @@ body{
 	flex-direction: column;
 }
 
+.innerContent h3{
+	text-align: center;
+}
 
 .childContent{
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-wrap: wrap;
+}
+
+.back{
+	user-select: none;
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	margin: 0;
+	width: 50px;
+	height: 50px;
+	background-color: #D2B48C;
+	border: solid black;
+	border-radius: 30px;
+}
+
+.back:hover{
+	background-color: black;
+	border: solid white;
+	color: white;
+	cursor: pointer;
+}
+
+.back h3{
+	position: absolute;
+	font-size: 40px;
+	top:-46;
+	left:7;
+}
+
+@media only screen and (max-width: 400px) {
+	.back{
+		position: relative;
+		width: 40px;
+		height: 40px;
+		margin:auto;
+	}
+
+	.back h3{
+		font-size: 32;
+		top: -38;
+		left: 4;
+	}
 }
 
 /*
