@@ -391,15 +391,15 @@ body{
 @media only screen and (max-width: 400px) {
 	.back{
 		position: relative;
-		width: 40px;
-		height: 40px;
-		margin:auto;
+		justify-content: center;
+		margin: auto;
+		width: 80;
+		height: 30;
 	}
 
 	.back h3{
-		font-size: 32;
-		top: -38;
-		left: 4;
+		top: -55;
+    	left: 20;
 	}
 }
 

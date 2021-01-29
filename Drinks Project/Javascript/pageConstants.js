@@ -365,7 +365,7 @@ const goBackFromDrinkView = () =>{
     }, 500);
 }
 
-const DrinkViewPage = `<span onclick="goBackFromDrinkView()" class="back"><h3 >&Larr;</h3></span>
+const DrinkViewPage = `<div onclick="goBackFromDrinkView()" class="back"><h3 >&Larr;</h3></div>
 <div class="centerRow">
     <div class="column"  style="text-align: center;">
         <h2 id='drinkName' ></h2>
@@ -441,7 +441,7 @@ const goBackFromIngredientView = () =>{
 
 const IngredientViewPage = 
 `
-<span class="back" onclick="goBackFromIngredientView()"><h3 >&Larr;</h3></span>
+<div class="back" onclick="goBackFromIngredientView()"><h3 >&Larr;</h3></div>
 <div class="ingredientRowVol2">
     <div id="appendLink" class="column">
         <h2 id="ingredientName"></h2>
