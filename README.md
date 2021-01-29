@@ -44,6 +44,6 @@
 ლინკი: https://www.thecocktaildb.com/api.php
 
 ### ჰოსტი:
-ლინკი: bes01-drinks.herokuapp.com
+ლინკი: https://www.bes01-drinks.herokuapp.com
 
 
