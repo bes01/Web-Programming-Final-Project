@@ -30,14 +30,17 @@ let controller = new AbortController();
 let { signal } = controller;
 
 const showDrink = (rowId, index, cardId) =>{
-    let temp = document.getElementById(rowId).children[index];
-    document.getElementById(rowId).children[index] = document.getElementById(rowId).children[index + 5];
-    document.getElementById(rowId).children[index + 5] = temp;
-    
-    document.getElementById(rowId).children[index].style.display = 'none';
-    let card = document.getElementById(cardId);
-    card.style.display = 'inline-block ';
-    card.className += ' animate__animated animate__zoomIn';
+    let temp = document.getElementById(rowId)
+    if(temp != null) {
+        temp = temp.children[index];
+        document.getElementById(rowId).children[index] = document.getElementById(rowId).children[index + 5];
+        document.getElementById(rowId).children[index + 5] = temp;
+        
+        document.getElementById(rowId).children[index].style.display = 'none';
+        let card = document.getElementById(cardId);
+        card.style.display = 'inline-block ';
+        card.className += ' animate__animated animate__zoomIn';
+    }
 }
 
 const prepareDrinkCard = (json, rowId, index, choose) =>{
@@ -192,7 +195,7 @@ let enableValueSelect = async () =>{
 
     for(; i < values.length; i++)
         valueField.innerHTML += `
-                <option value="${values[i]}">${values[i]}</option>
+                <option id="${values[i]}" value="${values[i]}">${values[i]}</option>
             `;
 
     valueField.disabled = false;    
@@ -418,7 +421,7 @@ let prepareDrinkView = async () =>{
 const IngredientViewPage = 
 `
 <div class="ingredientRowVol2">
-    <div class="column">
+    <div id="appendLink" class="column">
         <h2 id="ingredientName"></h2>
         <img id="ingredientImage" src="">
     </div>
@@ -429,6 +432,21 @@ const IngredientViewPage =
 </div>
 `;
 
+const findDrinksByIngredient = async (name) =>{
+    goToPage('Search', 'animate__zoomIn');
+    let options = document.getElementById('type').children;
+    options[0].removeAttribute("selected");
+    options[1].setAttribute("selected", true);
+    await enableValueSelect();
+    let selected = document.getElementById(name);
+    // Some Ingredients are not supported in search
+    if(selected != null){
+        document.getElementById('value').children[0].removeAttribute("selected");
+        selected.setAttribute("selected",true);
+    }
+    filter();
+};
+
 let prepareIngredientView = async () =>{
     let ingredient = await fetch('https://www.thecocktaildb.com/api/json/v1/1/lookup.php?iid=' + currentIngredientId).then(response => response.json());
     ingredient = ingredient.ingredients[0];
@@ -436,7 +454,10 @@ let prepareIngredientView = async () =>{
     document.getElementById('ingredientName').innerHTML = ingredient.strIngredient;
     document.getElementById('ingredientDescription').innerHTML = ingredient.strDescription == undefined ? 'No description was found :(' : ingredient.strDescription;
     document.getElementById('ingredientImage').src = 'https://www.thecocktaildb.com/images/ingredients/' + ingredient.strIngredient + '.png';
-}
+    document.getElementById('appendLink').innerHTML += `<h3 class="drinksLink" 
+                                                            onclick="findDrinksByIngredient('`+ ingredient.strIngredient +`')">
+                                                            Show drinks with this ingredient</h3>`;
+};
 
 let pages = {
     Home: {html:homePage, prepare: () =>{prepareHome()}},

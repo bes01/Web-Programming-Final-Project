@@ -29,6 +29,11 @@
     padding: 20px;
 }
 
+.drinksLink:hover{
+    color: blanchedalmond;
+    cursor: pointer;
+}
+
 @media only screen and (max-width: 700px) {
 	.ingredientRowVol2{
         flex-direction: column;
