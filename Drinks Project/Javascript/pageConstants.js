@@ -439,11 +439,12 @@ const findDrinksByIngredient = async (name) =>{
     options[1].setAttribute("selected", true);
     await enableValueSelect();
     let selected = document.getElementById(name);
-    // Some Ingredients are not supported in search
-    if(selected != null){
-        document.getElementById('value').children[0].removeAttribute("selected");
+    document.getElementById('value').children[0].removeAttribute("selected");
+    // Some Ingredients are not supported in getAllIngredients Call
+    if(selected != null)
         selected.setAttribute("selected",true);
-    }
+    else 
+        document.getElementById('value').innerHTML += `<option selected id="${name}" value="${name}">${name}</option>`;
     filter();
 };
 
