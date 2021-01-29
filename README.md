@@ -43,5 +43,7 @@
 ### გამოყენებული api:
 ლინკი: https://www.thecocktaildb.com/api.php
 
+### ჰოსტი:
+ლინკი: bes01-drinks.herokuapp.com
 
 
