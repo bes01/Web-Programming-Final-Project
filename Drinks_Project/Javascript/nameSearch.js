@@ -14,7 +14,7 @@ let searchByName = async () => {
 
     let url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + value;
     let drinks = await fetch(url).then(response => response.json());
-    goToPage('Search', 'animate__zoomIn')
+    await goToPage('Search', 'animate__zoomIn')
 
     if(drinks.drinks != null)
         renderDrinks(drinks.drinks);
