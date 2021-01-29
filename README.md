@@ -37,6 +37,8 @@
 	* 'About Us' გვერდი
 
 	* 'Contact' გვერდი
+	
+	* 'Credits' გვერდი
 
 ### გამოყენებული api:
 ლინკი: https://www.thecocktaildb.com/api.php
