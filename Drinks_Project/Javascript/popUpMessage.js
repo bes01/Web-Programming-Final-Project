@@ -27,5 +27,4 @@ let closeMessage = () =>{
 
 let prepareMessage = () =>{
     document.getElementById('closeMessage').addEventListener('click', () =>{closeMessage()});
-    // document.getElementById('overLay').addEventListener('click', () =>{closeMessage()});
 }
