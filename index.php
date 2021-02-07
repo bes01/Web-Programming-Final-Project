@@ -1,3 +1,3 @@
 <?php
-	include_once("")
+	include_once("Drinks_Project/dist/index.html")
 ?>
