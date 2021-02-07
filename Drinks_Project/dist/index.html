@@ -1,0 +1,90 @@
+<html>
+	<head>
+		<title>Drinks Web App</title>
+		<link rel="stylesheet" href="css/all.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="js/all.js"></script>
+	</head>
+	<body class="body">
+		<!-- /
+				Message-Start
+			 -->
+		<div id="overLay" class="overLay" style="display: none;"></div>
+		<div id="box" class="box" style="display: none;">
+			<div class="wrappBox">
+				<h3 id="message"></h3>
+				<div id= 'closeMessage' class="closeMessage" style="display: inline-block;"><h4 style="margin: 0;">Close Message</h4></div>
+			</div>
+		</div>
+		<script>prepareMessage()</script>
+		<!-- /
+				Header-Start
+			 -->
+		<div class="mainDiv">
+			<div class="header animate__animated animate__lightSpeedInRight">
+				<div class="logo">
+					<img class="logoImg" src="images/Home/logo.jpg">	
+				</div>	
+				<div class="heading">
+					<h1>Welcome To Cocktail's WebSite</h1>
+				</div>
+				<div class="search">
+					<h4 style="margin: 0;">Find Your Drink</h4>
+					<input type="text" id ="searchDrink" placeholder="Search for a Cocktail..."> 
+					<div id="searchButton" class="searchButton">Search</div>
+				</div>
+			</div>
+			<script>prepareSearch()</script>
+			<!-- /
+				Menu-Start
+			 -->
+			<div id ="menu" class="menu animate__animated animate__lightSpeedInLeft">
+				<ul>
+					<li class="item active">Home</li>
+					<li class="item">Search</li>
+					<li class="item">About Us</li>
+					<li class="item">Contact</li>
+					<li class="item">Credits</li>
+				</ul>
+			</div>
+			<div class="burgerMenu animate__animated animate__lightSpeedInLeft">
+				<h3 id='page' >Home</h3>
+				<div id="burger" style="display: none;">
+					<div class="active">Home</div>
+					<div >Search</div>
+					<div >About Us</div>
+					<div >Contact</div>
+					<div >Credits</div>
+				</div>
+				<a class="icon" onclick="showBurger()">
+					<i class="fa fa-bars"></i>
+				</a>
+			</div>
+			<script>prepareNavigation();</script>
+			<!-- /
+				Content-Start
+			 -->
+			<div id="content" class="content">
+				<div id="activePage" class="innerContent animate__animated animate__ZoomIn"  style ="width:100%;" ></div>
+				<div id="drinkPage" class="innerContent animate__animated"  style ="width:100%;"></div>
+				<div id="ingredientPage" class="innerContent animate__animated"  style ="width:100%;"></div>
+			</div>
+			<script>goToPage('Home', 'firstLoad')</script>
+			<!-- /
+				Footer-Start
+			 -->
+			<div class="Footer animate__animated animate__bounceInUp">
+				<h4>©2020 Cocktail's Website. All Rights Reserved.</h4>
+				<div class="socialMedia">
+					<img id="facebook" src="images/Footer/facebook.png">
+					<img id="instagram" src="images/Footer/instagram.png">
+					<img id="twitter" src="images/Footer/twitter.png">
+				</div>
+				<script>prepareFooter()</script>
+			</div>
+			<div style="height: 1%;"></div>
+		</div>
+	</body>
+</html>
