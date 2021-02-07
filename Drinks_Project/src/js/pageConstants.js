@@ -58,7 +58,7 @@ const prepareDrinksRow = async (rowId, loading) =>{
         if(loading){
             drinks += `
                 <div class="drinkCard loading" onclick="showMessage('Please, be patient. Wait until the card is fully loaded', 'error')">
-                    <img src="images/Home/cocktail.gif">
+                    <img src="Drinks_Project/dist/images/Home/cocktail.gif">
                     <h3 class="cardTitle">Drink</h3>
                     <p class="cardText">Description here.</p>
                 </div>
@@ -97,7 +97,7 @@ const prepareIngredientRow = async (rowId, loading) =>{
         if(loading){
             ingredients += `
             <div class="drinkCard loading" onclick="showMessage('Please, be patient. Wait until the card is fully loaded', 'error')">
-                <img src="images/Home/cocktail.gif">
+                <img src="Drinks_Project/dist/images/Home/cocktail.gif">
                 <h3 class="cardTitle">Drink</h3>
                 <p class="cardText">Description here.</p>
             </div>
@@ -110,7 +110,7 @@ const prepareIngredientRow = async (rowId, loading) =>{
                 return;
             let ingredient = resp.ingredients[0];
             ingredients += prepareDrinkCard({id: ingredient.idIngredient, description: ingredient.strDescription, 
-                src: "https://www.thecocktaildb.com/images/ingredients/" + ingredient.strIngredient + "-Medium.png", name: ingredient.strIngredient}, rowId, i, "ingredient");
+                src: "https://www.thecocktaildb.com/Drinks_Project/dist/images/ingredients/" + ingredient.strIngredient + "-Medium.png", name: ingredient.strIngredient}, rowId, i, "ingredient");
         }
     }
 
@@ -260,41 +260,41 @@ let filter = async ()=>{
 const CreditsPage = `
 <div class="creditRow">
     <div class="credit">
-        <img src="images/Credits/google.png">
+        <img src="Drinks_Project/dist/images/Credits/google.png">
         <h3> Special thanks to <a href="https://www.google.com/" target="_blank"> Google</a> for everything.</h3>
     </div>
     <div class="credit">
-        <img src="images/Credits/gulp.png">
+        <img src="Drinks_Project/dist/images/Credits/gulp.png">
         <h3> Thanks <a href="https://gulpjs.com/" target="_blank"> Gulp</a> for optimizations.</h3>
     </div>
 </div>
 <div class="creditRow">
     <div class="credit">
-        <img src="images/Credits/cocktail_db.png">
+        <img src="Drinks_Project/dist/images/Credits/cocktail_db.png">
         <h3> Thanks <a href="https://www.thecocktaildb.com/" target="_blank"> The Cocktail DB</a> for the drink jasons.</h3>
     </div>
     <div class="credit">
-        <img src="images/Credits/animation.png">
+        <img src="Drinks_Project/dist/images/Credits/animation.png">
         <h3>Thanks <a href="https://animate.style/" target="_blank"> Animatte.css</a> for cool css animations.</h3>
     </div>
 </div>
 <div class="creditRow">
     <div class="credit">
-        <img src="images/Credits/icons.png">
+        <img src="Drinks_Project/dist/images/Credits/icons.png">
         <h3> Thanks <a href="https://www.flaticon.com/" target="_blank"> FlatIcon</a> for fancy footer icons.</h3>
     </div>
     <div class="credit">
-        <img src="images/Credits/picresize.png">
+        <img src="Drinks_Project/dist/images/Credits/picresize.png">
         <h3> Thanks <a href="https://picresize.com/" target="_blank"> PicResize</a> for resizing static images.</h3>
     </div>
 </div>
 <div class="creditRow">
     <div class="credit">
-        <img src="images/Credits/text_generator.png">
+        <img src="Drinks_Project/dist/images/Credits/text_generator.png">
         <h3> Thanks <a href="https://www.blindtextgenerator.com/lorem-ipsum" target="_blank"> Blind Text Generator</a> for random texts.</h3>
     </div>
     <div class="credit">
-        <img src="images/Credits/u_might_not_need_jquery.png">
+        <img src="Drinks_Project/dist/images/Credits/u_might_not_need_jquery.png">
         <h3> And thanks <a href="http://youmightnotneedjquery.com/" target="_blank">Y.M.N.N.jQ.</a> for not using jQuery.</h3>
     </div>
 </div>
@@ -308,7 +308,7 @@ const aboutUsPage = `
 <h3 class="centerText" >Who We Are</h3>
 <div style="width: 100%;">
     <div class="row">
-        <img src="images/AboutUs/who_we_are.jpg">	
+        <img src="Drinks_Project/dist/images/AboutUs/who_we_are.jpg">	
         <p>
             Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar. The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way. When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.     
         </p>
@@ -320,13 +320,13 @@ const aboutUsPage = `
         <p>
             On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country. But nothing the copy said could convince her and so it didn’t take long until a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged her into their agency, where they abused her for their projects again and again. And if she hasn’t been rewritten, then they are still using her. Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.     
         </p>
-        <img src="images/AboutUs/why_you_should_use_our_website.jpg">	
+        <img src="Drinks_Project/dist/images/AboutUs/why_you_should_use_our_website.jpg">	
     </div>
 </div>
 <h3 class="centerText" >Future Visions</h3>
 <div style="width: 100%;">
     <div class="row">
-        <img src="images/AboutUs/future_visions.jpg">	
+        <img src="Drinks_Project/dist/images/AboutUs/future_visions.jpg">	
         <p>
             The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way. When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way. On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country.  
         </p>	
@@ -342,7 +342,7 @@ const contactPage = `
 <div class="contact">
     <div class="left">
         <div class="contactImgDiv">
-            <img class="contactImg" src="images/Contact/contact.gif">	
+            <img class="contactImg" src="Drinks_Project/dist/images/Contact/contact.gif">	
         </div>
         <h3>Contact methods:</h3>
         <h4>Phone1: <a href="tel:0322 45 87 56">0322 45 87 56</a></h4>

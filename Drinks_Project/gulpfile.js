@@ -1,11 +1,10 @@
-const gulp = require('gulp')
+const {src, parallel, dest } = require('gulp');
 const imagemin = require('gulp-imagemin')
 const concat = require('gulp-concat');
 const terser = require('gulp-terser');
 const sourcemaps = require('gulp-sourcemaps');
 const minifyCSS = require('gulp-minify-css');
 const prefix = require('gulp-autoprefixer');
-const {src, parallel, dest } = require('gulp');
 
 const imgTask = () =>{
     return src(['src/images/**/*', '!src/images/Home/logo.jpg']).
