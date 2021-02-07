@@ -30,9 +30,7 @@ const homePage = `
 <h3>Latest Drinks</h3>
 <div class="childContent" id="latestDrinks">
 </div>
-<h3>Popular Ingredients</h3>
-<div class="childContent" id="popularIngredients">
-</div>
+
 `;
 
 let controller = new AbortController();
@@ -144,8 +142,8 @@ const prepareHome = async () => {
     signal = controller.signal;
 
     // To change new/existing div, not previous
-    let dummies = ['randomDrinks', 'popularDrinks', 'latestDrinks', 'popularIngredients'];
-    for(let i = 0; i < 4; i++){
+    let dummies = ['randomDrinks', 'popularDrinks', 'latestDrinks'];
+    for(let i = 0; i < 3; i++){
         let dummy = Math.random();
         changeRowIds(dummies[i], dummy);
         dummies[i] += dummy;
@@ -154,12 +152,10 @@ const prepareHome = async () => {
     prepareDrinksRow(dummies[0], true);
     prepareDrinksRow(dummies[1], true);
     prepareDrinksRow(dummies[2], true);
-    prepareIngredientRow(dummies[3], true);
 
     prepareDrinksRow(dummies[0], false);
     prepareDrinksRow(dummies[1], false);
     prepareDrinksRow(dummies[2], false);
-    prepareIngredientRow(dummies[3], false);
 };
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
