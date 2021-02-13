@@ -84,7 +84,7 @@
 				<div id="drinkPage" class="innerContent animate__animated"  style ="width:100%;"></div>
 				<div id="ingredientPage" class="innerContent animate__animated"  style ="width:100%;"></div>
 			</div>
-			<script>goToPage('Home', 'firstLoad')</script>
+			<script>goToPage(window.location.hash.substr(1), 'firstLoad');</script>
 			<!-- /
 				Footer-Start
 			 -->
