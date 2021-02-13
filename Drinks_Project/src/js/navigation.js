@@ -18,7 +18,6 @@ const markActive = (page) =>{
 }
 
 let goToPage = async (page, from) =>{
-    console.log(page + " a");
     /* From Ingredient View To Search Page Case */
     window.location.hash = page;
     /* * * * * * ** * * * * * * * * * * * * * * */
